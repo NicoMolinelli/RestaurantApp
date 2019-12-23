@@ -1,0 +1,362 @@
+﻿<Window x:Class="RestaurantAppWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:RestaurantAppWPF"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1024">
+    <!--RESOURCES-->
+    <Window.Resources>
+        <!-- MenuTextBLockStyle-->
+        <Style x:Key="MenuTextBlocksStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20,0,0,0" />
+        </Style>
+        <!--MenuPackIconsStyle-->
+        <Style x:Key="MenuPackIconsStyle" TargetType="materialDesign:PackIcon">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="30" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,5,5,5"/>
+        </Style>
+
+        <!-- TextBoxes style corner radius-->
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+
+        <!--<Style x:Key="pino" TargetType="ListViewItem">
+            <Setter Property="Background" Value="Black"/>
+        </Style>-->
+
+        <!--STORYBOARDS-->
+
+        <!--StoryBoard for closing menu-->
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--StoryBoard open menu-->
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="AdaptGridOnMenuClose">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="MainGrid">
+                <EasingThicknessKeyFrame KeyTime="0" Value="250,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.6" Value="60,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="AdaptGridOnMenuOpen">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="MainGrid">
+                <EasingThicknessKeyFrame KeyTime="0" Value="60,0,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.6" Value="250,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="AdaptButtonOnMenuClose">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ButtonShowPreviousPage">
+                <EasingThicknessKeyFrame KeyTime="0" Value="255,5,10,10"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.6" Value="65,5,10,10"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="AdaptButtonOnMenuOpen">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ButtonShowPreviousPage">
+                <EasingThicknessKeyFrame KeyTime="0" Value="65,5,10,10"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.6" Value="255,5,10,10"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="ShowUserButtons">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="StackPanelUserButtons">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="190"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="HideUserButtons">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="StackPanelUserButtons">
+                <EasingDoubleKeyFrame KeyTime="0" Value="190"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="GridSettingsFadeIn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="GridSettings">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="GridSettingsFadeOut">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="GridSettings">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+
+    </Window.Resources>
+
+    <!--WINDOW TRIGGERS-->
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonArrowLeft">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+            <BeginStoryboard Storyboard="{StaticResource AdaptGridOnMenuClose}"/>
+            <BeginStoryboard Storyboard="{StaticResource AdaptButtonOnMenuClose}"/>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+            <BeginStoryboard Storyboard="{StaticResource AdaptGridOnMenuOpen}"/>
+            <BeginStoryboard Storyboard="{StaticResource AdaptButtonOnMenuOpen}"/>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonShowButtonsuser">
+            <BeginStoryboard Storyboard="{StaticResource ShowUserButtons}"/>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonArrowUp">
+            <BeginStoryboard Storyboard="{StaticResource HideUserButtons}"/>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonSettings">
+            <BeginStoryboard Storyboard="{StaticResource GridSettingsFadeIn}"/>
+        </EventTrigger>
+
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseGridSettings">
+            <BeginStoryboard Storyboard="{StaticResource GridSettingsFadeOut}"/>
+
+        </EventTrigger>
+    </Window.Triggers>
+
+    <!--GRIGLIA BASE-->
+    <Grid>
+
+        <!--Top Bar -->
+        <Grid VerticalAlignment="Top" Height="50" Background="#FF2279FE" Grid.ColumnSpan="2" Margin="0,0,0.334,0">
+
+            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect FadeIn, Duration= 0:0:0:0.9}">
+
+                <StackPanel x:Name="NameAndIcon" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,0">
+
+                    <Rectangle Width="30" Height="30">
+
+                        <!--<Rectangle.Fill>
+                            <ImageBrush ImageSource=""
+                        </Rectangle.Fill>-->
+                    </Rectangle>
+
+                    <TextBlock x:Name="RestaurantSign" Text="RISTORANTE PINO" Foreground="#FF050202" Margin="10,0,0,0" FontSize="30" FontFamily="Algerian" VerticalAlignment="Center"/>
+                </StackPanel>
+            </materialDesign:TransitioningContent>
+
+            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration= 0:0:0:0.9}">
+                <TextBox x:Name="TextBoxSearchBar" HorizontalAlignment="Right" Width="160" Margin="11,0,100,0" Height="34" FontFamily="Segoe UI Historic" BorderThickness="1" SnapsToDevicePixels="True" IsEnabled="False" ToolTip="Find your desire" TextChanged="TextBoxSearchBar_TextChanged" VerticalContentAlignment="Center">
+
+                </TextBox>
+            </materialDesign:TransitioningContent>
+
+            <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration= 0:0:0:0.9}">
+                <materialDesign:PackIcon Kind="Search" HorizontalAlignment="Right" Width="25" Height="24" VerticalAlignment="Center" Margin="0,0,103,0" />
+            </materialDesign:TransitioningContent>
+            
+            
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Margin="0,0,10,0">
+
+                
+
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignCentres" PopupMode="Click" HorizontalAlignment="Right">
+                    <StackPanel  VerticalAlignment="Center">
+                        <!--<Button Style="{StaticResource MaterialDesignFloatingActionButton}" >
+                        
+                    </Button>-->
+                    </StackPanel>
+                </materialDesign:PopupBox>
+
+            </StackPanel>
+
+        </Grid>
+
+
+
+        <!--Content grid-->
+        <Grid Margin="0,50,0,0">
+            <Grid.Background>
+                <ImageBrush ImageSource="Assets\restaurant_home.JPG"/>
+            </Grid.Background>
+
+            <!--Button show other buttons stackpanel-->
+            <materialDesign:TransitioningContent x:Name="TransitioningContentButtonUserControls" OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration= 0:0:0.9 }">
+                <Button x:Name="ButtonShowButtonsuser" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Click="ButtonShowButtonsuser_Click" Background="#FF2279FE" Margin="10,5, 10, 10" Width="40" Height="40" VerticalAlignment="Top" SnapsToDevicePixels="True"  HorizontalAlignment="Right">
+                    <materialDesign:PackIcon Kind="UserDetails" Height="20" Width="20" Foreground="Black"/>
+                </Button>
+            </materialDesign:TransitioningContent>
+
+            <StackPanel x:Name="StackPanelUserButtons" Orientation="Vertical" Margin="0,5,10,0"  HorizontalAlignment="Right" VerticalAlignment="Top" Height="0">
+                <Button x:Name="ButtonDragMove"  Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Background="#FF2279FE" Margin="0"  MouseDown="ButtonDragMove_MouseDown" ToolTip="Hold and move"  Width="40" Height="40">
+                    <materialDesign:PackIcon Kind="WindowRestore" Height="20" Width="20" Foreground="Black"/>
+                </Button>
+                <Button x:Name="ButtonSettings" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Background="#FF2279FE" Margin="0,10,0,0" Width="40" Height="40" ToolTip="Settings" Click="ButtonSetting_Click">
+                    <materialDesign:PackIcon Kind="Settings" Height="20" Width="20" Foreground="Black"/>
+                </Button>
+                <Button x:Name="ButtonShutDown" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Background="#FF2279FE" Margin="0,10,0,0" Width="40" Height="40" ToolTip="Shut Down" Click="ButtonShutDown_Click">
+                    <materialDesign:PackIcon Kind="Power" Height="20" Width="20" Foreground="Black" />
+                </Button>
+                <Button x:Name="ButtonArrowUp" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Background="#FF2279FE" Margin="0,10,0,0" Width="40" Height="40" ToolTip="Hide Buttons" Click="ButtonArrowUp_Click">
+                    <materialDesign:PackIcon Kind="ArrowUp" Height="20" Width="20" Foreground="Black" />
+                </Button>
+            </StackPanel>
+
+            <!-- Button previous page-->
+            <materialDesign:TransitioningContent x:Name="TransitioningContentButtonPreviousPage" OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration= 0:0:0.9 }" Foreground="#FF003CFF">
+                <Button x:Name="ButtonShowPreviousPage" Style="{StaticResource MaterialDesignIconButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Click="ButtonShowPreviousPage_Click" Background="{x:Null}" Margin="255,5,10,10" Width="40" Height="40" VerticalAlignment="Center" SnapsToDevicePixels="True"  HorizontalAlignment="Left" Foreground="#FF0285EE" Visibility="Collapsed">
+                    <materialDesign:PackIcon Kind="ArrowLeftBoldCircleOutline" Height="40" Width="40" Foreground="#FF2279FE"/>
+                </Button>
+            </materialDesign:TransitioningContent>
+
+            <!-- Button next page-->
+            <materialDesign:TransitioningContent x:Name="TransitioningContentButtonNextPage" OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration= 0:0:0.9 }" Foreground="#FF003CFF">
+                <Button x:Name="ButtonShowNextPage" Style="{StaticResource MaterialDesignIconButton}" materialDesign:ShadowAssist.ShadowDepth="Depth3" Click="ButtonShowNextPage_Click" Background="{x:Null}" Margin="10,5, 10, 10" Width="40" Height="40" VerticalAlignment="Center" SnapsToDevicePixels="True"  HorizontalAlignment="Right" Foreground="#FF0285EE" Visibility="Collapsed">
+                    <materialDesign:PackIcon Kind="ArrowRightBoldCircleOutline" Height="40" Width="40" Foreground="#FF2279FE"/>
+                </Button>
+            </materialDesign:TransitioningContent>
+
+            <!--MAIN GRID-->
+            <Grid x:Name="MainGrid" Margin="250,0,0.334,-0.333" OpacityMask="Black">
+
+
+
+            </Grid>
+
+
+        </Grid>
+
+
+        <!--Settings grid-->
+        <Grid x:Name="GridSettings" Opacity="0" Visibility="Collapsed">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.705"/>
+            </Grid.Background>
+            <Border Margin="250,80,80,80" BorderThickness="2" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF626262" Offset="0"/>
+                        <GradientStop Color="#FF604BCA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel>
+                    <Button x:Name="ButtonCloseGridSettings" HorizontalAlignment="Right" Click="ButtonCloseGridSettings_Click" VerticalAlignment="Top" Width="45" Height="45" >
+                        <materialDesign:PackIcon Kind="Close" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10" Width="400">
+                        <ComboBox  Margin="0,0,12,0" HorizontalAlignment="Left" Height="30" >
+                            <ComboBoxItem Content="Mr." IsSelected="True" Foreground="#FF110FE0"/>
+                            <ComboBoxItem Content="Mrs." Foreground="#FF110FE0" />
+                        </ComboBox>
+                        <TextBox x:Name="TextBoxUserName" Text="Gino" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Name" Margin="20,0,40,0" Height="58" Width="122" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="TextBoxUserSurname" Text="Pino" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Right" materialDesign:HintAssist.Hint="Surname" Margin="0" Width="124" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+
+                    <Border BorderThickness="1" BorderBrush="Black" CornerRadius="5" Width="140" Margin="0,20,0,0" HorizontalAlignment="Center">
+                        <DatePicker Margin="7.667,8,8.667,8" BorderThickness="0" ToolTip="d/m/y"  materialDesign:HintAssist.Hint="Birth Date"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Height="37" FontSize="15" DisplayDateStart="1930-01-01" />
+                    </Border>
+
+                    <TextBox x:Name="TextBoxUserReservationName" Text="Pino" ToolTip="The name you want use for bookings" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Reservation Name" Margin="0,20,0,0" Height="58" Width="122"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="120,25,90.333,0" HorizontalAlignment="Center" Height="70" Width="473" >
+                        <TextBox x:Name="TextBoxUserMail" Text="gino.pino@gmail.com" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="E-mail" Margin="10,0,25,0" Width="162" VerticalAlignment="Center"/>
+                        <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}"  materialDesign:HintAssist.Hint="Password" HorizontalAlignment="Right" Margin="90,5,0,5" Width="173" VerticalAlignment="Center" />
+                    </StackPanel>
+
+
+                </StackPanel>
+            </Border>
+        </Grid>
+        
+        
+        <!--GRID MENU-->
+        <materialDesign:TransitioningContent x:Name="TransitioningContentMenu" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration= 0:0:0.9 }" Margin="0,0,0.333,-0.333">
+            <Grid x:Name="MenuGrid" Width="250" HorizontalAlignment="Left" Background="Black" Opacity="0.9" Margin="0,0,0,-0.333">
+                <Grid Height="50" VerticalAlignment="Top" Background="#FF2279FE">
+                   
+                    <Button x:Name="ButtonArrowLeft" HorizontalAlignment="Right" Background="{x:Null}" Height="Auto" Margin="0,0,0,0"  BorderBrush="Black" Click="ButtonArrowLeft_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Height="30" Width="30" Foreground="Black"/>
+                    </Button>
+                    <Button x:Name="ButtonMenu" HorizontalAlignment="Right" Background="{x:Null}" Height="Auto" Margin="0,0,0,0"  BorderBrush="Black" Visibility="Collapsed" Click="ButtonMenu_Click">
+                        <materialDesign:PackIcon Kind="Menu" Height="40" Width="40" Foreground="Black"/>
+                    </Button>
+                </Grid>
+
+                <materialDesign:TransitioningContent x:Name="TransitioningContentCursor" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration= 0:0:0.2 }">
+                    <Grid x:Name="CursorGrid" Margin="0,100,0,0" Width="10" VerticalAlignment="Top" HorizontalAlignment="Left" Height="60" Background="#FF2279FE"/>
+                </materialDesign:TransitioningContent>
+
+
+                <ListView x:Name="ListViewMenu" x:FieldModifier="public"  SelectionChanged="ListViewMenu_SelectionChanged" Margin="0,100" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                    <ListViewItem Height="60" Foreground="LightGray" ToolTip="Home">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Style="{StaticResource MenuPackIconsStyle}" Kind="Home" />
+                            <TextBlock Style="{StaticResource MenuTextBlocksStyle}" Text="Home" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Height="60" Foreground="LightGray">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Style="{StaticResource MenuPackIconsStyle}" Kind="Rice" />
+                            <TextBlock Style="{StaticResource MenuTextBlocksStyle}" Text="Dishes" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem x:Name="ListViewItemPizza" Height="60" Foreground="LightGray">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Style="{StaticResource MenuPackIconsStyle}" Kind="Cookie" />
+                            <TextBlock Style="{StaticResource MenuTextBlocksStyle}" Text="Pizza" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Height="60" Foreground="LightGray">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Style="{StaticResource MenuPackIconsStyle}" Kind="GlassCocktail" />
+                            <TextBlock Style="{StaticResource MenuTextBlocksStyle}" Text="Drinks" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Height="60" Foreground="LightGray">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Style="{StaticResource MenuPackIconsStyle}" Kind="BookAdd" />
+                            <TextBlock Style="{StaticResource MenuTextBlocksStyle}" Text="Book" />
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Height="60" Foreground="LightGray">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Style="{StaticResource MenuPackIconsStyle}" Kind="Map" />
+                            <TextBlock Style="{StaticResource MenuTextBlocksStyle}" Text="About us" />
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+
+
+            </Grid>
+        </materialDesign:TransitioningContent>
+
+    </Grid>
+</Window>

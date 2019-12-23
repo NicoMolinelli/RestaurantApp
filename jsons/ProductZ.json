@@ -1,0 +1,107 @@
+[
+{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\margherita.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "salmana ",
+		"Price": "12,00",
+		"ItemImage": "assets\\margherita.jpg"
+    
+  },
+	{
+    "ItemName": "Amatriciana",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Gnocchi",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Penne ai funghi",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Amatri",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Cotoletta",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Carbonara",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  },
+	{
+    "ItemName": "Fusilli co tonno",
+    "Ingredients": "Uova, pecorino, guanciale, pepe nero, ",
+		"Price": "12,00",
+		"ItemImage": "assets\\carbonara.jpg"
+    
+  }
+]
