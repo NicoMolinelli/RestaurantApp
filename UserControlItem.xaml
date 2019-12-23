@@ -8,16 +8,16 @@
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              d:DesignHeight="220" d:DesignWidth="180" Height="220" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,10">
-     <materialDesign:TransitioningContent x:Name="TransitioningContentCursor" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration= 0:0:0.9 }">
-            <Border BorderThickness="2" BorderBrush="Black" CornerRadius="5">
-             <Grid OpacityMask="Black">
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Rectangle Width="160" Height="120" VerticalAlignment="Top" StrokeThickness="3" Stroke="#FF090909" HorizontalAlignment="Center" Margin="0,5,0,0">
+    <materialDesign:TransitioningContent x:Name="TransitioningContentCursor" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration= 0:0:0.9 }">
+        <Border BorderThickness="2" BorderBrush="Black" CornerRadius="10" Padding="5,0,5,5">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF368AFF" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Rectangle Width="160" Height="120" VerticalAlignment="Top" StrokeThickness="3" Stroke="#FF090909" HorizontalAlignment="Center">
 
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="{Binding Path=ItemImage}" Stretch="Fill"/>
@@ -29,18 +29,18 @@
                     <TextBlock x:Name="TextBlockItemIngredientLabel" Text="Ingredients:" Margin="0,5,0,0" FontSize="12" FontFamily="Copperplate Gothic Light"/>
                     <TextBlock x:Name="TextBlockIetmIngredients" Text="{Binding Path=Ingredients}" FontSize="10" Margin="0,2,0,0" FontStyle="Italic" FontFamily="Sitka Display"/>
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,0,5" >
                     <TextBlock VerticalAlignment="Center" Text="{Binding Path=Price}" HorizontalAlignment="Center" Margin="0,0,0,5" Width="40" Height="15" FontFamily="Cooper Black" FontSize="14" TextAlignment="Center" UseLayoutRounding="True" SnapsToDevicePixels="True">
-                
-                
-                </TextBlock>
-                
+
+
+                    </TextBlock>
+
                     <materialDesign:PackIcon Kind="Euro" Height="17" Width="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,2,0"/>
                 </StackPanel>
             </Grid>
         </Border>
     </materialDesign:TransitioningContent>
-    
+
 
 </UserControl>
