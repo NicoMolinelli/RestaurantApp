@@ -18,9 +18,11 @@
             </Calendar>
             </materialDesign:TransitioningContent>
             <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:1.3}" >
-                <materialDesign:Clock x:Name="ClockTime"  IsEnabled="False"  DisplayAutomation="ToMinutesOnly"   HorizontalAlignment="Right" Is24Hours="True" Margin="75,0,75,29" Height="Auto" ButtonRadiusInnerRatio="0.6" >
-                </materialDesign:Clock>
-                <!--<materialDesign:TimePicker HorizontalAlignment="Right"   Is24Hours="True" Margin="75,0,75,29" Foreground="#FF0039F3" Style="{StaticResource MaterialDesignFloatingHintTimePicker}"/>-->
+                <StackPanel HorizontalAlignment="Left" Margin="75,0,0,0">
+                    <ListView>
+                        
+                    </ListView>
+                </StackPanel>
             </materialDesign:TransitioningContent>
         </StackPanel>
         <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect FadeIn, Duration= 0:0:3}">
