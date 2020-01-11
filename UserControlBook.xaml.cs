@@ -28,5 +28,10 @@ namespace RestaurantAppWPF
             
 
         }
+
+        private void CalendarDate_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
