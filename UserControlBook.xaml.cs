@@ -20,18 +20,24 @@ namespace RestaurantAppWPF
     /// </summary>
     public partial class UserControlBook : UserControl
     {
-        
+        public List<string> hours;
         public UserControlBook()
         {
             InitializeComponent();
             CalendarDate.BlackoutDates.AddDatesInPast();
+
+            hours = new List<string>();
+            hours.Add("18:30");
+            hours.Add("19:00");
+            hours.Add("19:30");
+            hours.Add("20:00");
+            hours.Add("20:30");
+            hours.Add("21:00");
+            hours.Add("21:30");
+            hours.Add("22:00");
+
+            listviewHours.ItemsSource = hours;
             
-
-        }
-
-        private void CalendarDate_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

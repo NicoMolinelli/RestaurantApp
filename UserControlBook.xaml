@@ -13,14 +13,32 @@
         </materialDesign:TransitioningContent>
         <StackPanel Margin="0,40,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
             <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:1.3}">
-            <Calendar  x:Name="CalendarDate"   Width="279" HorizontalAlignment="Left" Margin="0" SelectionMode="SingleDate" SelectedDatesChanged="CalendarDate_SelectedDatesChanged">
+            <Calendar  x:Name="CalendarDate"   BorderBrush="Black" Width="279" HorizontalAlignment="Left" Margin="0" SelectionMode="SingleDate">
                
             </Calendar>
             </materialDesign:TransitioningContent>
             <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:1.3}" >
                 <StackPanel HorizontalAlignment="Left" Margin="75,0,0,0">
-                    <ListView>
+                    <ListView x:Name="listviewHours" SelectionMode="Single" UseLayoutRounding="True">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="2" Rows="4" Margin="5" Background="White" Opacity="0.8">
+                                    
+                                </UniformGrid>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate >
+                                <Border Background="#FF2279FE" BorderThickness="1" BorderBrush="Black" CornerRadius="10" Margin="5">
+                                    <Label BorderThickness="0" Content="{Binding .}" Foreground="White" Width="80" 
+                                           Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                           FontSize="18"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                     
                         
+
                     </ListView>
                 </StackPanel>
             </materialDesign:TransitioningContent>
